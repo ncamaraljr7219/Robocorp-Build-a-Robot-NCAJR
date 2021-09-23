@@ -1,6 +1,8 @@
 {
   "websitedata": {
     "url": "https://robotsparebinindustries.com/#/robot-order" 
-    "whowrotethis": "Nilson Cardoso Amaral Junior"
+  },
+  "autor": {
+    "nome": "Nilson Cardoso Amaral Junior" 
   }
 }
