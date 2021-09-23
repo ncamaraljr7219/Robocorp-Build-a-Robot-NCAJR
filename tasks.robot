@@ -86,9 +86,9 @@ Processando as entradas de dados relativo a cada pedido de criacao de robo
     Input Text  //input[@placeholder="Shipping address"]  ${row}[Address] 
     Click Button  //button[@id="preview"]
     Wait Until Page Contains Element  //div[@id="robot-preview-image"]
-    Sleep  5 seconds
+    Wait Until Element Is Visible   //*[@id="head"]
+    Wait Until Element Is Enabled   //*[@id="head"]
     Click Button  //button[@id="order"]
-    Sleep  5 seconds
     
     # O comando sleep é uma solução suja para o caso em que uma parte da imagem com três dobras ainda não foi carregada
     # Isso pode acontecer em velocidades de download muito reduzidas e resulta em uma imagem de destino incompleta.
@@ -119,7 +119,7 @@ Realizando a conferencia dos recibos que foram processados ou nao
 ***Keywords***
 Processando a criacao de robos e geracao do recibo no final
     [Arguments]  ${row} 
-    Sleep  5 seconds
+    Page Should Contain Element  //*[@id="receipt"]
     ${reciept_data}=  Get Element Attribute  //div[@id="receipt"]  outerHTML
     Html To Pdf  ${reciept_data}  ${CURDIR}${/}reciepts${/}${row}[Order number].pdf
     Screenshot  //div[@id="robot-preview-image"]  ${CURDIR}${/}robots${/}${row}[Order number].png 
@@ -149,7 +149,6 @@ Processando pedidos de criacao de robos
 
 ***Keywords***
 Baixar arquivo csv order
-    #${file_url}=  Get Value From User  Por gentileza informar a URL do arquivo CSV  https://robotsparebinindustries.com/orders.csv  
     Download  ${csv_url}  orders.csv
     Sleep  2 seconds
 
@@ -158,6 +157,12 @@ Zippar a pasta de recibos
     Archive Folder With Zip  ${CURDIR}${/}reciepts  ${OUTPUT_DIR}${/}reciepts.zip
 
     # Crie o nome do arquivo
+
++***Keywords***
+Buscando o nome do Author no Vault
+    ${website}=  Get Secret  websitedata
+    Log                     ${website}[username] escreveu esse programa de robo para vc!!      console=yes
+
 
 *** Tasks ***
 Lista da sequencia no qual o robo ira atuar para criacao e tratamento dos pedidos
