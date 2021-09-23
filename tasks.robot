@@ -46,7 +46,6 @@ ${csv_url}        https://robotsparebinindustries.com/orders.csv
 ***Keywords***
 Abrir a janela do browser padrao da maquina
     ${website}=  Get Secret  websitedata
-    ${nome}=  Get Secret  autor
     Open Available Browser  ${website}[url]
     Maximize Browser Window
 
