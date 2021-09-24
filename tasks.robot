@@ -148,7 +148,9 @@ Processando pedidos de criacao de robos
 
 ***Keywords***
 Baixar arquivo csv order
-    Download  ${csv_url}  orders.csv
+    ${file_url}=  Get Value From User  Por Gentileza informar a URL do arquivo CSV :    https://robotsparebinindustries.com/orders.csv  
+    Download  ${file_url}  orders.csv
+    #Download  ${csv_url}  orders.csv
     Sleep  2 seconds
 
 ***Keywords***
